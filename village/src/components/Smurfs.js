@@ -12,7 +12,7 @@ class Smurfs extends Component {
         <ul>
           {this.props.smurfs.map(smurf => {
             return (
-              <Link to={`/${smurf.id}`} key={smurf.id}>
+              <Link to={`/smurfs/${smurf.id}`} key={smurf.id}>
                 <div className="smurf">
                   <h3>{smurf.name}</h3>
                   <strong>{smurf.height} tall</strong>

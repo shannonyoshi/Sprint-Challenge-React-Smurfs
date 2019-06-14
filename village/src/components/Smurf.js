@@ -7,7 +7,6 @@ const Smurf = ({smurfs, match, deleteSmurf, setUpdateForm}) => {
   if (!smurf) {
     return <h2>Loading Smurfs...</h2>
   }
-  
   return (
     <div className="Smurf">
         <FaTrashAlt
