@@ -65,10 +65,10 @@ class App extends Component {
           path="/smurf-form"
           render={props => <SmurfForm {...props} addSmurf={this.addSmurf} />}
         />
-        {/* <Route path="/:id" render={props => (
-          <Smurf {...props} />
+        <Route path="/:id" render={props => (
+          <Smurf {...props} smurfs={this.state.smurfs} />
         )}
-        /> */}
+        />
       </div>
     );
   }
