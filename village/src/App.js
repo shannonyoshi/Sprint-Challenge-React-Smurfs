@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      smurfs: []
+      smurfs: [],
+      activeSmurf: null
     };
   }
 
@@ -41,18 +42,41 @@ class App extends Component {
         console.log(err);
       });
   };
-  deleteSmurf = (e,id) => {
+  deleteSmurf = (e, id) => {
     e.preventDefault();
     axios
-    .delete(`http://localhost:3333/smurfs/${id}`)
-    .then(res=> {
-      this.setState({smurfs: res.data})
-      this.props.history.push("/");
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+      .delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => {
+        this.setState({ smurfs: res.data });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  setUpdateForm = (e, smurf) => {
+    e.preventDefault();
+    this.setState({
+      activeSmurf: smurf
+    });
+    this.props.history.push("/smurf-form");
+  };
+
+  updateSmurf = (e, smurf) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+      .then(res => {
+        this.setState({
+          activeSmurf: null,
+          smurfs: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(smurf);
+      });
+  };
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
@@ -61,8 +85,12 @@ class App extends Component {
       <div className="App">
         <header>
           <nav>
-            <NavLink exact to="/">Smurfs</NavLink>
-            <NavLink to="/smurf-form">Smurf Form</NavLink>
+            <NavLink exact to="/" className="nav-link">
+              Smurfs
+            </NavLink>
+            <NavLink to="/smurf-form" className="nav-link">
+              {`${this.state.activeSmurf ? "Update" : "Add"} Smurf `}
+            </NavLink>
           </nav>
         </header>
 
@@ -74,15 +102,25 @@ class App extends Component {
         <Route
           exact
           path="/smurf-form"
-          render={props => <SmurfForm {...props} addSmurf={this.addSmurf} />}
+          render={props => (
+            <SmurfForm
+              {...props}
+              addSmurf={this.addSmurf}
+              activeSmurf={this.state.activeSmurf}
+              updateSmurf={this.updateSmurf}
+            />
+          )}
         />
-        <Route path="/:id" render={props => (
-          <Smurf 
-          {...props} 
-          smurfs={this.state.smurfs}
-          deleteSmurf={this.deleteSmurf}
-          />
-        )}
+        <Route
+          path="/:id"
+          render={props => (
+            <Smurf
+              {...props}
+              smurfs={this.state.smurfs}
+              deleteSmurf={this.deleteSmurf}
+              setUpdateForm={this.setUpdateForm}
+            />
+          )}
         />
       </div>
     );

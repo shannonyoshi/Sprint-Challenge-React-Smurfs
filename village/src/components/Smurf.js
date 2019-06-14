@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaEdit } from "react-icons/fa";
 
-const Smurf = ({smurfs, match, deleteSmurf}) => {
+const Smurf = ({smurfs, match, deleteSmurf, setUpdateForm}) => {
   const {id} = match.params;
   const smurf = smurfs.find(smurf => `${smurf.id}` === id);
   if (!smurf) {
@@ -13,6 +13,12 @@ const Smurf = ({smurfs, match, deleteSmurf}) => {
         <FaTrashAlt
         onClick={e => {
           deleteSmurf(e, smurf.id);
+        }}
+        style={{ color: "black", fontSize: "1em", padding: "1em" }}
+      />
+      <FaEdit
+        onClick={e => {
+          setUpdateForm(e, smurf);
         }}
         style={{ color: "black", fontSize: "1em", padding: "1em" }}
       />
