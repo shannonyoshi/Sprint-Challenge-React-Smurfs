@@ -67,7 +67,6 @@ class App extends Component {
     axios
       .put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
       .then(res => {
-        console.log(res)
         this.setState({
           activeSmurf: null,
           smurfs: res.data
@@ -75,7 +74,7 @@ class App extends Component {
         this.props.history.push("/");
       })
       .catch(err => {
-        console.log("smurf", smurf,err);
+        console.log(err);
       });
   };
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
