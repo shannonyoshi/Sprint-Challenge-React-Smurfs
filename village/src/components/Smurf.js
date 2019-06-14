@@ -1,6 +1,7 @@
 import React from 'react';
+import { FaTrashAlt } from "react-icons/fa";
 
-const Smurf = ({smurfs, match}) => {
+const Smurf = ({smurfs, match, deleteSmurf}) => {
   const {id} = match.params;
   const smurf = smurfs.find(smurf => `${smurf.id}` === id);
   if (!smurf) {
@@ -9,6 +10,12 @@ const Smurf = ({smurfs, match}) => {
   
   return (
     <div className="Smurf">
+        <FaTrashAlt
+        onClick={e => {
+          deleteSmurf(e, smurf.id);
+        }}
+        style={{ color: "black", fontSize: "1em", padding: "1em" }}
+      />
       <h3>{smurf.name}</h3>
       <strong>{smurf.height} tall</strong>
       <p>{smurf.age} smurf years old</p>
