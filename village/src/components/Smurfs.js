@@ -6,13 +6,14 @@ import Smurf from "./Smurf";
 class Smurfs extends Component {
   render() {
     return (
-      <div className="Smurfs">
+      <div className="smurfs-wrapper">
         <h1>Smurf Village</h1>
+        <div className="smurfs">
         <ul>
           {this.props.smurfs.map(smurf => {
             return (
-              <Link to={`/${smurf.id}`} key={smurf.id}>
-                <div className="Smurf">
+              <Link to={`/smurfs/${smurf.id}`} key={smurf.id}>
+                <div className="smurf">
                   <h3>{smurf.name}</h3>
                   <strong>{smurf.height} tall</strong>
                   <p>{smurf.age} smurf years old</p>
@@ -28,6 +29,7 @@ class Smurfs extends Component {
             );
           })}
         </ul>
+        </div>
       </div>
     );
   }

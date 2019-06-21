@@ -100,10 +100,10 @@ Add a Router to this application by using React Router.
 
 **DELETE '/smurfs/123', where 123 is the Id of the smurf you want to remove**
 
-- [ ] For this endpoint to work, all you need is an id sent up as part of the request url.
+- [x] For this endpoint to work, all you need is an id sent up as part of the request url.
 
-- [ ] If your delete worked, you'll get a list of the smurfs back.
-- [ ] Example:
+- [x] If your delete worked, you'll get a list of the smurfs back.
+- [x] Example:
 
 ```js
 // output: `A list of all the smurfs in the Smurf DB will be returned`
@@ -145,5 +145,5 @@ Add a Router to this application by using React Router.
 
 **Router Stretch Problem**
 
-- [ ] If a user clicks on a smurf, they should be routed to `/smurf/:id` and a single smurf should be displayed on the page.
-- [ ] I know this seems like a small task, but you'll have to get crafty with your data and your logic here.
+- [x] If a user clicks on a smurf, they should be routed to `/smurf/:id` and a single smurf should be displayed on the page.
+- [x] I know this seems like a small task, but you'll have to get crafty with your data and your logic here.
